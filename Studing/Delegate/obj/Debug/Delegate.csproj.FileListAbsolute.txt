@@ -1,0 +1,5 @@
+E:\MyGitHub\Studying\Studing\Delegate\bin\Debug\Delegate.exe.config
+E:\MyGitHub\Studying\Studing\Delegate\bin\Debug\Delegate.exe
+E:\MyGitHub\Studying\Studing\Delegate\bin\Debug\Delegate.pdb
+E:\MyGitHub\Studying\Studing\Delegate\obj\Debug\Delegate.exe
+E:\MyGitHub\Studying\Studing\Delegate\obj\Debug\Delegate.pdb

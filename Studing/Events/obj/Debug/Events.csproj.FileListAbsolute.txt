@@ -1,0 +1,6 @@
+E:\MyGitHub\Studying\Studing\Events\bin\Debug\Events.exe.config
+E:\MyGitHub\Studying\Studing\Events\bin\Debug\Events.exe
+E:\MyGitHub\Studying\Studing\Events\bin\Debug\Events.pdb
+E:\MyGitHub\Studying\Studing\Events\obj\Debug\Events.csprojResolveAssemblyReference.cache
+E:\MyGitHub\Studying\Studing\Events\obj\Debug\Events.exe
+E:\MyGitHub\Studying\Studing\Events\obj\Debug\Events.pdb
