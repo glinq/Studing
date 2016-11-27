@@ -1,0 +1,8 @@
+E:\studing\Studing\Asnyc\bin\Debug\Asnyc.exe.config
+E:\studing\Studing\Asnyc\obj\Debug\Asnyc.AsnycForm.resources
+E:\studing\Studing\Asnyc\obj\Debug\Asnyc.Properties.Resources.resources
+E:\studing\Studing\Asnyc\obj\Debug\Asnyc.csproj.GenerateResource.Cache
+E:\studing\Studing\Asnyc\bin\Debug\Asnyc.exe
+E:\studing\Studing\Asnyc\bin\Debug\Asnyc.pdb
+E:\studing\Studing\Asnyc\obj\Debug\Asnyc.exe
+E:\studing\Studing\Asnyc\obj\Debug\Asnyc.pdb
