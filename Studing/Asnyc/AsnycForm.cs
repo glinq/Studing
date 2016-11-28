@@ -77,10 +77,10 @@ namespace Asnyc
         private void btnAsnycAdvance_Click(object sender, EventArgs e)
         {
             Console.WriteLine("**************btnAsnycAdvance_Click异步进阶开始******************");
-            DoSomething todo = DoSomethingTest;
-            AsyncCallback asyncCallback = t=> Console.WriteLine("这是asyncCallback,当前线程Id:{0}，AsyncState={1}", Thread.CurrentThread.ManagedThreadId,t.AsyncState);
-            //todo.BeginInvoke 的执行结果就是IAsyncResult   其实t就是异步执行的结果
-            IAsyncResult result= todo.BeginInvoke(string.Format("btnAsnycAdvance_Click异步进阶"), asyncCallback, "我是什么啊");
+            //DoSomething todo = DoSomethingTest;
+            //AsyncCallback asyncCallback = t=> Console.WriteLine("这是asyncCallback,当前线程Id:{0}，AsyncState={1}", Thread.CurrentThread.ManagedThreadId,t.AsyncState);
+            ////todo.BeginInvoke 的执行结果就是IAsyncResult   其实t就是异步执行的结果
+            //IAsyncResult result= todo.BeginInvoke(string.Format("btnAsnycAdvance_Click异步进阶"), asyncCallback, "我是什么啊");
 
 
             //异步主线程等待三种方式
@@ -97,11 +97,28 @@ namespace Asnyc
 
 
             //3
-            todo.EndInvoke(result);
+            //todo.EndInvoke(result);
 
-
-
+            Func<string, long> todolong = DoSomethingTestlong;
+            IAsyncResult resut=todolong.BeginInvoke("todolong", null, null);
+            long lresult=todolong.EndInvoke(resut);
+            Console.WriteLine("这是DoSomethingTestlong,当前线程Id:{0}，计算结果={1}", Thread.CurrentThread.ManagedThreadId,lresult);
             Console.WriteLine("**************btnAsnycAdvance_Click异步进阶结束******************");
+        }
+
+        private long DoSomethingTestlong(string name)
+        {
+            long lResult = 0;
+            Stopwatch watch = new Stopwatch();
+            watch.Start();
+            for (int i = 0; i < 1000000; i++)
+            {
+                lResult += i;
+            }
+            Thread.Sleep(1000);
+            watch.Stop();
+            Console.WriteLine("这里是{0}，计算结果是{1}，耗时{2},,当前线程Id{3}", name, lResult, watch.ElapsedMilliseconds, Thread.CurrentThread.ManagedThreadId);
+            return lResult;
         }
     }
 }
