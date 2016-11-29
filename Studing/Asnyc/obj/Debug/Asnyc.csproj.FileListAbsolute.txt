@@ -6,4 +6,3 @@ E:\studing\Studing\Asnyc\bin\Debug\Asnyc.exe
 E:\studing\Studing\Asnyc\bin\Debug\Asnyc.pdb
 E:\studing\Studing\Asnyc\obj\Debug\Asnyc.exe
 E:\studing\Studing\Asnyc\obj\Debug\Asnyc.pdb
-E:\studing\Studing\Asnyc\obj\Debug\Asnyc.csprojResolveAssemblyReference.cache
