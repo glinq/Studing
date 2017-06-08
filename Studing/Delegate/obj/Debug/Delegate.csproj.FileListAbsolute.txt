@@ -6,3 +6,9 @@ E:\MyGitHub\Studying\Studing\Delegate\obj\Debug\Delegate.pdb
 E:\studing\Studing\Delegate\bin\Debug\Delegate.exe.config
 E:\studing\Studing\Delegate\obj\Debug\Delegate.exe
 E:\studing\Studing\Delegate\obj\Debug\Delegate.pdb
+F:\Studing\Studing\Delegate\bin\Debug\Delegate.exe.config
+F:\Studing\Studing\Delegate\bin\Debug\Delegate.exe
+F:\Studing\Studing\Delegate\bin\Debug\Delegate.pdb
+F:\Studing\Studing\Delegate\obj\Debug\Delegate.csprojResolveAssemblyReference.cache
+F:\Studing\Studing\Delegate\obj\Debug\Delegate.exe
+F:\Studing\Studing\Delegate\obj\Debug\Delegate.pdb

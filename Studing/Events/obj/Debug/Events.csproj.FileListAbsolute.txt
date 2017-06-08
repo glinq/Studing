@@ -9,3 +9,9 @@ E:\studing\Studing\Events\obj\Debug\Events.exe
 E:\studing\Studing\Events\obj\Debug\Events.pdb
 E:\studing\Studing\Events\bin\Debug\Events.exe
 E:\studing\Studing\Events\bin\Debug\Events.pdb
+F:\Studing\Studing\Events\bin\Debug\Events.exe.config
+F:\Studing\Studing\Events\bin\Debug\Events.exe
+F:\Studing\Studing\Events\bin\Debug\Events.pdb
+F:\Studing\Studing\Events\obj\Debug\Events.csprojResolveAssemblyReference.cache
+F:\Studing\Studing\Events\obj\Debug\Events.exe
+F:\Studing\Studing\Events\obj\Debug\Events.pdb
