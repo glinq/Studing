@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="EntityCompare.cs" />
     <Compile Include="HttpUnity.cs" />
+    <Compile Include="MailUnity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
