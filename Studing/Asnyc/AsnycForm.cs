@@ -37,7 +37,7 @@ namespace Asnyc
             DoSomething todo = DoSomethingTest;
             for (int i = 0; i < 5; i++)
             {
-                todo.BeginInvoke(string.Format("btnAsnyc_Click异步"),null,null);
+                todo.BeginInvoke(string.Format("btnAsnyc_Click异步"),null,null);//BeginInvoke  该方法就是一个异步执行的方法，会调用一个子线程
             }
             Console.WriteLine("**************btnAsnyc_Click异步结束******************");
 
@@ -76,6 +76,10 @@ namespace Asnyc
 
         private void btnAsnycAdvance_Click(object sender, EventArgs e)
         {
+
+            //Thread t = new Thread(()=> { });
+            //t.Priority=ThreadPriority.Normal;
+
             Console.WriteLine("**************btnAsnycAdvance_Click异步进阶开始******************");
             //DoSomething todo = DoSomethingTest;
             //AsyncCallback asyncCallback = t=> Console.WriteLine("这是asyncCallback,当前线程Id:{0}，AsyncState={1}", Thread.CurrentThread.ManagedThreadId,t.AsyncState);
@@ -97,11 +101,15 @@ namespace Asnyc
 
 
             //3
-            //todo.EndInvoke(result);
+            //todo.EndInvoke(result);//等待线程结束
 
             Func<string, long> todolong = DoSomethingTestlong;
             IAsyncResult resut=todolong.BeginInvoke("todolong", null, null);
-            long lresult=todolong.EndInvoke(resut);
+            if (!resut.IsCompleted)
+            {
+                Console.WriteLine("请继续等待.....");
+            }
+            long lresult =todolong.EndInvoke(resut);
             Console.WriteLine("这是DoSomethingTestlong,当前线程Id:{0}，计算结果={1}", Thread.CurrentThread.ManagedThreadId,lresult);
             Console.WriteLine("**************btnAsnycAdvance_Click异步进阶结束******************");
         }
