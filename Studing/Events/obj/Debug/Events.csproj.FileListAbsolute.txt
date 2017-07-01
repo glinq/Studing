@@ -14,3 +14,4 @@ F:\Studing\Studing\Events\bin\Debug\Events.exe
 F:\Studing\Studing\Events\bin\Debug\Events.pdb
 F:\Studing\Studing\Events\obj\Debug\Events.exe
 F:\Studing\Studing\Events\obj\Debug\Events.pdb
+F:\Studing\Studing\Events\obj\Debug\Events.csprojResolveAssemblyReference.cache

@@ -14,3 +14,4 @@ F:\Studing\Studing\Asnyc\obj\Debug\Asnyc.Properties.Resources.resources
 F:\Studing\Studing\Asnyc\obj\Debug\Asnyc.csproj.GenerateResource.Cache
 F:\Studing\Studing\Asnyc\obj\Debug\Asnyc.exe
 F:\Studing\Studing\Asnyc\obj\Debug\Asnyc.pdb
+F:\Studing\Studing\Asnyc\obj\Debug\Asnyc.csprojResolveAssemblyReference.cache
