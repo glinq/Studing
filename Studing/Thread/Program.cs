@@ -256,14 +256,17 @@ namespace ThreadDemo
 
         public static SingleUnit GetInstens()
         {
-            lock (obj)
+            if (Unit == null)
             {
-                if (Unit == null)
+                lock (obj)
                 {
-                    return new SingleUnit();
+                    if (Unit == null)
+                    {
+                        return new SingleUnit();
+                    }
                 }
-                return Unit;
             }
+            return Unit;
         }
     }
 }

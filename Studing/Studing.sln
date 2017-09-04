@@ -27,6 +27,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "公共方法", "公共方�
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "单例模式", "单例模式\单例模式.csproj", "{089726A3-09A9-46E2-9861-3340A7E726B3}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "开源框架", "开源框架", "{15446910-B014-4673-A982-599E384B3CC0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "依赖注入Unity", "依赖注入Unity\依赖注入Unity.csproj", "{FAE09A97-DBA0-421B-8D6D-317F8D141C2D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +61,10 @@ Global
 		{089726A3-09A9-46E2-9861-3340A7E726B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{089726A3-09A9-46E2-9861-3340A7E726B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{089726A3-09A9-46E2-9861-3340A7E726B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FAE09A97-DBA0-421B-8D6D-317F8D141C2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAE09A97-DBA0-421B-8D6D-317F8D141C2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAE09A97-DBA0-421B-8D6D-317F8D141C2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAE09A97-DBA0-421B-8D6D-317F8D141C2D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -68,5 +76,6 @@ Global
 		{A554AA75-6D0C-4D65-8F46-7983FA2DE2EB} = {66D0D104-DDF9-4C88-B221-46C8842E2DDC}
 		{86A0EAB3-534F-4CE6-B9CA-07777D190F35} = {B59F58E9-3DFF-4D03-8219-7E128B8B82ED}
 		{089726A3-09A9-46E2-9861-3340A7E726B3} = {543494BB-3A01-4BB0-B3DB-194B18F9862E}
+		{FAE09A97-DBA0-421B-8D6D-317F8D141C2D} = {15446910-B014-4673-A982-599E384B3CC0}
 	EndGlobalSection
 EndGlobal
