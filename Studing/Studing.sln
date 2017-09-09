@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Delegate", "Delegate\Delegate.csproj", "{CB0FF326-7BF1-4B66-81A1-969A2ABF3AC6}"
 EndProject
@@ -30,6 +30,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "开源框架", "开源框架", "{15446910-B014-4673-A982-599E384B3CC0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "依赖注入Unity", "依赖注入Unity\依赖注入Unity.csproj", "{FAE09A97-DBA0-421B-8D6D-317F8D141C2D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MVC", "MVC", "{53624D56-CC7F-4297-B7DA-DA2939E372DE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcStuding", "MvcStuding\MvcStuding.csproj", "{08B65844-3461-4892-B3F4-95458F986D74}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -65,6 +69,10 @@ Global
 		{FAE09A97-DBA0-421B-8D6D-317F8D141C2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FAE09A97-DBA0-421B-8D6D-317F8D141C2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FAE09A97-DBA0-421B-8D6D-317F8D141C2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08B65844-3461-4892-B3F4-95458F986D74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08B65844-3461-4892-B3F4-95458F986D74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08B65844-3461-4892-B3F4-95458F986D74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08B65844-3461-4892-B3F4-95458F986D74}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -77,5 +85,9 @@ Global
 		{86A0EAB3-534F-4CE6-B9CA-07777D190F35} = {B59F58E9-3DFF-4D03-8219-7E128B8B82ED}
 		{089726A3-09A9-46E2-9861-3340A7E726B3} = {543494BB-3A01-4BB0-B3DB-194B18F9862E}
 		{FAE09A97-DBA0-421B-8D6D-317F8D141C2D} = {15446910-B014-4673-A982-599E384B3CC0}
+		{08B65844-3461-4892-B3F4-95458F986D74} = {53624D56-CC7F-4297-B7DA-DA2939E372DE}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {281CB6B4-27D3-4257-A1F4-402BC957CAC1}
 	EndGlobalSection
 EndGlobal
