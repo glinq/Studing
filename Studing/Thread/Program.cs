@@ -16,17 +16,17 @@ namespace ThreadDemo
         {
             #region 后台线程
             //Thread t = new Thread(Worker);
-            /*应用程序必须运行完所有的前台线程才可以退出；
-             * 而对于后台线程，应用程序则可以不考虑其是否已经运行完毕而直接退出，
-             */
+            ///*应用程序必须运行完所有的前台线程才可以退出；
+            // * 而对于后台线程，应用程序则可以不考虑其是否已经运行完毕而直接退出，
+            // */
             //t.IsBackground = true;
             //t.Start();
             //Console.WriteLine("Running from Main");
-            //Console.ReadKey(); 
 
-            //Thread tt = new Thread(new ParameterizedThreadStart(t => Console.WriteLine(t)));
+            ////其他创建线程的方式
+            //Thread tt = new Thread(new ParameterizedThreadStart(t1 => Console.WriteLine(t1)));
             //tt.Start("1234567890");
-            //Thread t2 = new Thread(t => Console.WriteLine(t));
+            //Thread t2 = new Thread(t1 => Console.WriteLine(t1));
             //t2.Start("1234567890");
             #endregion
 
@@ -38,18 +38,19 @@ namespace ThreadDemo
             //TestLock("主线程");
             #endregion
 
-            #region 线程取消
+            #region 线程取消方式
             //CancellationTokenSource cts = new CancellationTokenSource();
-            ////Task.Run(()=>Worker(),cts.Token);
-            ////Task<int> tr = new Task<int>(WorkerInt(cts.Token,1), cts.Token);
-            ////tr.Start();
-            //Task<int> tr = Task.Run(()=> WorkerInt(cts.Token, 900), cts.Token);
-            //if (tr.Wait(100))
+            //Task.Run(() => Worker(), cts.Token);
+            //Task<long> tr = new Task<long>(()=>WorkerInt(cts.Token, 1), cts.Token);
+            //tr.Start();
+            //Task<long> tr1 = Task.Run(() => WorkerInt(cts.Token, 900), cts.Token);
+            //if (tr.Wait(10000))
             //{
             //    Console.WriteLine("**********速度贼快************");
-            //    tr.ContinueWith(a=> Console.WriteLine("111"),TaskContinuationOptions.OnlyOnRanToCompletion);
+            //    tr.ContinueWith(a => Console.WriteLine("111"), TaskContinuationOptions.OnlyOnRanToCompletion);
             //}
-            //else {
+            //else
+            //{
             //    Console.WriteLine("**********超时了************");
             //};
             //cts.Cancel();
@@ -62,7 +63,7 @@ namespace ThreadDemo
             //{
             //    Console.WriteLine("WorkerInt() is canceled");
 
-            //} 
+            //}
             #endregion
 
             #region 并行处理任务
@@ -70,15 +71,12 @@ namespace ThreadDemo
             //ParalleTest();
             #endregion
 
-            #region 线程池线程处理 
+            #region 线程池线程处理 获取线程池最大线程数  最小保留的线程数
             //如果没有线程池线程 就会自动创建  执行完任务后 返回到线程池  长时间闲置 会自己醒来自动释放自己
-            //ThreadPool.QueueUserWorkItem(a => Console.WriteLine("当前线程id{0}",Thread.CurrentThread.ManagedThreadId), null);
             //ThreadPool.QueueUserWorkItem(a => Console.WriteLine("当前线程id{0}", Thread.CurrentThread.ManagedThreadId), null);
             //ThreadPool.QueueUserWorkItem(a => Console.WriteLine("当前线程id{0}", Thread.CurrentThread.ManagedThreadId), null);
             //ThreadPool.QueueUserWorkItem(a => Console.WriteLine("当前线程id{0}", Thread.CurrentThread.ManagedThreadId), null);
-
-
-
+            //ThreadPool.QueueUserWorkItem(a => Console.WriteLine("当前线程id{0}", Thread.CurrentThread.ManagedThreadId), null);
 
             //int workThreads = 0, IOThreads = 0;
             //ThreadPool.GetMaxThreads(out workThreads, out IOThreads);
@@ -91,43 +89,44 @@ namespace ThreadDemo
 
             #region 任务完成时启动新任务（延续任务）  
             //在前一个任务取消的情况下TaskContinuationOptions.OnlyOnCanceled
-            //Task.Run(() => Worker()).ContinueWith(c => Worker(),TaskContinuationOptions.OnlyOnCanceled);
+            // Task.Run(() => Worker()).ContinueWith(c => Worker(), TaskContinuationOptions.OnlyOnRanToCompletion);
             #endregion
 
             #region 启动子任务
-            //创建子任务TaskContinuationOptions.AttachedToParent
+            ////创建子任务TaskContinuationOptions.AttachedToParent
             //Task parent = new Task(() =>
             //{
             //    new Task(() => Console.WriteLine("1"), TaskCreationOptions.AttachedToParent).Start();
-            //    new Task(() => Console.WriteLine("2"), TaskCreationOptions.AttachedToParent).Start();
-            //    new Task(() => Console.WriteLine("3"), TaskCreationOptions.AttachedToParent).Start();
+            //    new Task(() => Console.WriteLine("2"), TaskCreationOptions.DenyChildAttach).Start();
+            //    new Task(() => Console.WriteLine("3"), TaskCreationOptions.PreferFairness).Start();
             //    new Task(() => Console.WriteLine("4"), TaskCreationOptions.AttachedToParent).Start();
             //});
             //parent.Start();
             #endregion
 
             #region 任务工厂使用
-            /*
-             统一去管理任务的配置             
-             */
-            //CancellationTokenSource cts = new CancellationTokenSource();
+            /////*
+            //// 统一去管理任务的配置     获取多个线程执行结果的最大值          
+            //// */
+            //CancellationTokenSource ctsss = new CancellationTokenSource();
             //Task Parent = new Task(() =>
             //{
             //    //相同的任务配置
-            //    var tf = new TaskFactory(cts.Token, TaskCreationOptions.AttachedToParent, TaskContinuationOptions.ExecuteSynchronously, TaskScheduler.Default);
+            //    var tf = new TaskFactory(ctsss.Token, TaskCreationOptions.AttachedToParent,
+            //        TaskContinuationOptions.ExecuteSynchronously, TaskScheduler.Default);
 
             //    var tasks = new[] {
-            //    tf.StartNew(() => WorkerInt(cts.Token,30000)),
-            //    tf.StartNew(() => WorkerInt(cts.Token,50000)),
-            //    tf.StartNew(() => WorkerInt(cts.Token,60000000))
-            //};
+            //    tf.StartNew(() => WorkerInt(ctsss.Token,300)),
+            //    tf.StartNew(() => WorkerInt(ctsss.Token,500)),
+            //    tf.StartNew(() => WorkerInt(ctsss.Token,6000))
+            //    };
             //    for (int i = 0; i < tasks.Length; i++)
             //    {
-            //        tasks[i].ContinueWith(t => cts.Cancel(), TaskContinuationOptions.OnlyOnFaulted);
+            //        tasks[i].ContinueWith(t1 => ctsss.Cancel(), TaskContinuationOptions.OnlyOnFaulted);
             //    }
             //    tf.ContinueWhenAll(tasks, completetask =>
-            //    completetask.Where(t => !t.IsFaulted && !t.IsCanceled).Max(t => t.Result), TaskContinuationOptions.None)
-            //    .ContinueWith(t => Console.WriteLine("the maximum is {0}", t.Result), TaskContinuationOptions.ExecuteSynchronously);
+            //    completetask.Where(t1 => !t1.IsFaulted && !t1.IsCanceled).Max(t1 => t1.Result), TaskContinuationOptions.None)
+            //    .ContinueWith(t1 => Console.WriteLine("the maximum is {0}", t1.Result), TaskContinuationOptions.ExecuteSynchronously);
             //});
 
             //Parent.ContinueWith(p =>
@@ -146,12 +145,13 @@ namespace ThreadDemo
             #region  定时器
             //TimerTest();//Timer
             //TaskDelayTest();// taskdelay+async+await
+            //TaskDelayTest2();
             #endregion
 
             #region 异步读取文件
             //var v = ReadFile();
-            //Console.WriteLine(v.Length); 
-            #endregion
+            //Console.WriteLine(v.Length);
+           #endregion
 
             Console.ReadKey();
         }
@@ -183,7 +183,7 @@ namespace ThreadDemo
             }
             for (int i = 1; i <= length; i++)
             {
-                //Console.WriteLine("Running from WorkerInt(){0}", i);
+                Console.WriteLine("Running from WorkerInt(){0}", i);
                 result += i;
                 c.ThrowIfCancellationRequested();
             }
@@ -206,19 +206,22 @@ namespace ThreadDemo
         }
         public static void ParalleTest()
         {
-            Parallel.For(1, 1000, i => Console.WriteLine(i));
-            Parallel.ForEach(new List<int> { 1, 2, 3 }, i => Console.WriteLine(i));
-            Parallel.Invoke();
+            Parallel.For(1, 3000000, i => { Thread.Sleep(10); Console.WriteLine(i); });
+            //Parallel.ForEach(new List<int> { 1, 2, 3 }, i => Console.WriteLine(i));
+            //Parallel.Invoke(() => Console.WriteLine("2222222222"), () => Console.WriteLine($"33333"));
         }
         public static void TimerTest()
         {
-            Timer tr = new Timer(t => Console.WriteLine(t), "my  status", 1000, 100);
+            Timer tr = new Timer(t => Console.WriteLine(t), "my  status", 1000, 100);//1000ms后执行，每次执行时间间隔100ms
             Thread.Sleep(2000);
-            tr.Change(1000, 10);
+            tr.Change(1000, 10);//1000ms后执行，每次执行时间间隔10ms
             Thread.Sleep(2000);
-            tr.Change(2000, Timeout.Infinite);
-            //tr.Dispose();
+            tr.Change(0, Timeout.Infinite);//终止
+            tr.Dispose();
         }
+        /// <summary>
+        /// 时钟
+        /// </summary>
         public static async void TaskDelayTest()
         {
             while (true)
@@ -227,11 +230,19 @@ namespace ThreadDemo
                 await Task.Delay(1000);
             }
         }
+        public static void TaskDelayTest2()
+        {
+            while (true)
+            {
+                Console.WriteLine("{0}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                Thread.Sleep(1000);
+            }
+        }
         public static byte[] ReadFile()
         {
-            byte[] bytearr = new byte[100];
+            byte[] bytearr = new byte[199900];
             FileStream fs = new FileStream(@"C:\1.txt", FileMode.OpenOrCreate, FileAccess.Read, FileShare.ReadWrite, 1, FileOptions.Asynchronous);
-            Task<int> t = fs.ReadAsync(bytearr, 0, 100);
+            Task<int> t = fs.ReadAsync(bytearr, 0, 199900);
             t.ContinueWith(t2 => Console.WriteLine("读取完成"));
             return bytearr;
         }

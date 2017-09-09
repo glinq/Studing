@@ -1,11 +1,3 @@
-E:\studing\Studing\Asnyc\bin\Debug\Asnyc.exe.config
-E:\studing\Studing\Asnyc\obj\Debug\Asnyc.AsnycForm.resources
-E:\studing\Studing\Asnyc\obj\Debug\Asnyc.Properties.Resources.resources
-E:\studing\Studing\Asnyc\obj\Debug\Asnyc.csproj.GenerateResource.Cache
-E:\studing\Studing\Asnyc\bin\Debug\Asnyc.exe
-E:\studing\Studing\Asnyc\bin\Debug\Asnyc.pdb
-E:\studing\Studing\Asnyc\obj\Debug\Asnyc.exe
-E:\studing\Studing\Asnyc\obj\Debug\Asnyc.pdb
 F:\Studing\Studing\Asnyc\bin\Debug\Asnyc.exe.config
 F:\Studing\Studing\Asnyc\bin\Debug\Asnyc.exe
 F:\Studing\Studing\Asnyc\bin\Debug\Asnyc.pdb
@@ -15,3 +7,13 @@ F:\Studing\Studing\Asnyc\obj\Debug\Asnyc.csproj.GenerateResource.Cache
 F:\Studing\Studing\Asnyc\obj\Debug\Asnyc.exe
 F:\Studing\Studing\Asnyc\obj\Debug\Asnyc.pdb
 F:\Studing\Studing\Asnyc\obj\Debug\Asnyc.csprojResolveAssemblyReference.cache
+E:\studing\Studing\Asnyc\bin\Debug\Asnyc.exe.config
+E:\studing\Studing\Asnyc\bin\Debug\Asnyc.exe
+E:\studing\Studing\Asnyc\bin\Debug\Asnyc.pdb
+E:\studing\Studing\Asnyc\obj\Debug\Asnyc.csprojResolveAssemblyReference.cache
+E:\studing\Studing\Asnyc\obj\Debug\Asnyc.AsnycForm.resources
+E:\studing\Studing\Asnyc\obj\Debug\Asnyc.Properties.Resources.resources
+E:\studing\Studing\Asnyc\obj\Debug\Asnyc.csproj.GenerateResource.Cache
+E:\studing\Studing\Asnyc\obj\Debug\Asnyc.csproj.CoreCompileInputs.cache
+E:\studing\Studing\Asnyc\obj\Debug\Asnyc.exe
+E:\studing\Studing\Asnyc\obj\Debug\Asnyc.pdb
