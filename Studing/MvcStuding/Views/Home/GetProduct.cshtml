@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = "GetProduct";
+}
+@model MvcStuding.Models.Product
+<h2>GetPerson</h2>
+@using (Html.BeginForm())
+{
+    <div>
+        @Html.LabelFor(a => a.Id)
+        @Html.EditorFor(a => a.Id)
+
+    </div>
+    <div>
+        @Html.LabelFor(a => a.Title)
+        @Html.EditorFor(a => a.Title)
+    </div>
+    <div>
+        @Html.LabelFor(a => a.CreateTime)
+        @Html.EditorFor(a => a.CreateTime)
+    </div>
+    <button type="submit">Submit</button>
+}
