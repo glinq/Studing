@@ -144,6 +144,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="HtmlExt\HtmlExt.cs" />
     <Compile Include="Models\DecimalModelBinder.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductModelBinder.cs" />
