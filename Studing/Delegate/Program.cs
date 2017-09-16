@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Delegate;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,63 +7,60 @@ using System.Threading.Tasks;
 
 namespace Deleget
 {
-    /*********
-     * 归纳加减乘除的方法共同的规律
-     * 定一个委托  可以避免更多的if(){}else{};switch();
-     * **********************/
-    delegate double Calculate(double x, double y);//申明一个委托类型
+
     class Program
     {
         static void Main(string[] args)
         {
+            #region 计算器
+            MyCalculate _MyCalculate = new MyCalculate();
             //一般的调用
-            Calculate calculate;
+            Calculate_Delegate _calculate_Delegate;
             //创建的多种方法
-            calculate = new Calculate(Add);
-            calculate = Add;
-            //多播委托
-            calculate += Subtraction;
-            calculate += Multiplication;
-            calculate -= Subtraction;
-            calculate -= Divide;
+            _calculate_Delegate = new Calculate_Delegate(_MyCalculate.Add);
+            //_calculate_Delegate = _MyCalculate.Add; //可以直接这么写（只要符合委托签名即可）
+            //多播委托(栈方式  只执行后入的那个方法)
+            _calculate_Delegate += _MyCalculate.Subtraction;
+            _calculate_Delegate += _MyCalculate.Multiplication;
+            _calculate_Delegate -= _MyCalculate.Subtraction;
+            _calculate_Delegate -= _MyCalculate.Divide;//可以去除不存在的方法
             double result;
             //执行的多种方法
-            result = calculate.Invoke(4, 3);
-            result = calculate(4, 3);
-
+            result = _calculate_Delegate.Invoke(4, 3);
+            result = _MyCalculate.DoCalculate<double>(4, 5, _MyCalculate.Add);
+            Console.WriteLine($"{result}");
+            result = _calculate_Delegate(4, 3);
+            Console.WriteLine($"{result}");
             //方法作为参数传递给另一个方法
-            result = DoCalculate(Divide, 4, 3);
+            result = _MyCalculate.DoCalculate(_MyCalculate.Divide, 4, 3);
             Console.WriteLine("计算结果是：" + result);
+
+            #endregion
+
+
+            #region 通用排序实例
+            List<Employee> Employees = new List<Employee>
+            {
+                new Employee("和",6),
+                new Employee("林",8),
+                new Employee("粥",5),
+                new Employee("轮",3),
+                new Employee("顾",9),
+                new Employee("小",4),
+                new Employee("仟",7)
+            };
+
+            MySort.Sort(Employees, Employee.CompareAge);
+            Employees.ForEach(
+                f =>
+                {
+                    Console.WriteLine(f);
+                });
+
+            #endregion
+
             Console.ReadKey();
-
-        }
-        /// <summary>
-        /// 将委托方法method比如（Add）传给另一个方法DoCalculate作为参数
-        /// </summary>
-        /// <param name="method"></param>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        /// <returns></returns>
-        static double DoCalculate(Calculate method, double x, double y)
-        {
-            return method(x, y);
         }
 
-        static double Add(double x, double y)
-        {
-            return x + y;
-        }
-        static double Subtraction(double x, double y)
-        {
-            return x - y;
-        }
-        static double Multiplication(double x, double y)
-        {
-            return x * y;
-        }
-        static double Divide(double x, double y)
-        {
-            return x / y;
-        }
     }
 }
