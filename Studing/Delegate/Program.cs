@@ -87,7 +87,7 @@ namespace Deleget
 
             #endregion
 
-            Action a = () => Console.WriteLine("1");
+            //Action a = () => Console.WriteLine("1");
             Console.ReadKey();
         }
 

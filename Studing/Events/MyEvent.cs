@@ -18,20 +18,14 @@ namespace Events
         /// <param name="eatSomething"></param>
         public void EatAction_Event()
         {
-            if(eatSomething_Event != null)
-            {
-                eatSomething_Event.Invoke();
-            }
+            eatSomething_Event?.Invoke();
         }
         /// <summary>
         /// 使用委托方法
         /// </summary>
         public void EatAction_Delegate()
         {
-            if (eatSomething_Delegate != null)
-            {
-                eatSomething_Delegate.Invoke();
-            }
+            eatSomething_Delegate?.Invoke();
         }
     }
 }

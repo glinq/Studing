@@ -30,10 +30,7 @@ namespace Events
         {
             Console.WriteLine("*****************MiaoEvent*******************");
             Console.WriteLine("猫 喵一声");
-            if (CatMiao_Event!=null)
-            {
-                CatMiao_Event.Invoke();
-            }
+            CatMiao_Event?.Invoke();
         }
     }
 }
