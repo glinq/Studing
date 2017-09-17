@@ -37,8 +37,8 @@ namespace Events
             Console.WriteLine("*********************事件发布、订阅*********************");
             var _dealer = new CarDealer();//经销商
             var gu = new Customer("顾");
-            _dealer.NewCarInfo_event += gu.NewCarIsHere;
-            _dealer.NewCar("法拉利");
+            _dealer.NewCarInfo_event += gu.NewCarIsHere;//订阅事件
+            _dealer.NewCar("法拉利");//发布事件
 
             var lin = new Customer("林");
             _dealer.NewCarInfo_event += lin.NewCarIsHere;

@@ -35,6 +35,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MVC", "MVC", "{53624D56-CC7
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcStuding", "MvcStuding\MvcStuding.csproj", "{08B65844-3461-4892-B3F4-95458F986D74}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "字符串和正则表达式", "字符串和正则表达式", "{5FA247EB-1DD6-4332-AF0C-B66022D38C5D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StringAndRegularExpression", "StringAndRegularExpression\StringAndRegularExpression.csproj", "{A29F95D6-4995-4605-A70E-1B2EB5CB328A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -73,6 +77,10 @@ Global
 		{08B65844-3461-4892-B3F4-95458F986D74}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{08B65844-3461-4892-B3F4-95458F986D74}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{08B65844-3461-4892-B3F4-95458F986D74}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A29F95D6-4995-4605-A70E-1B2EB5CB328A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A29F95D6-4995-4605-A70E-1B2EB5CB328A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A29F95D6-4995-4605-A70E-1B2EB5CB328A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A29F95D6-4995-4605-A70E-1B2EB5CB328A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -86,6 +94,7 @@ Global
 		{089726A3-09A9-46E2-9861-3340A7E726B3} = {543494BB-3A01-4BB0-B3DB-194B18F9862E}
 		{FAE09A97-DBA0-421B-8D6D-317F8D141C2D} = {15446910-B014-4673-A982-599E384B3CC0}
 		{08B65844-3461-4892-B3F4-95458F986D74} = {53624D56-CC7F-4297-B7DA-DA2939E372DE}
+		{A29F95D6-4995-4605-A70E-1B2EB5CB328A} = {5FA247EB-1DD6-4332-AF0C-B66022D38C5D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {281CB6B4-27D3-4257-A1F4-402BC957CAC1}
