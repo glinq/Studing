@@ -151,7 +151,20 @@ namespace ThreadDemo
             #region 异步读取文件
             //var v = ReadFile();
             //Console.WriteLine(v.Length);
-           #endregion
+            #endregion
+
+
+
+            Parallel.For(1, 3, a => {
+                int begin = 0;//页
+                for (int i = 1; i <= 10; i++)//数据是  50页*100条*batchNo  条
+                {
+                    begin = (a - 1) * 50 + i;//当前是第几页
+                    Console.WriteLine($"当前第{begin}页，每页100条；");
+                }
+
+            });
+
 
             Console.ReadKey();
         }

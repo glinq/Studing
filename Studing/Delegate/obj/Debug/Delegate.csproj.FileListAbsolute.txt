@@ -15,3 +15,10 @@ E:\studing\Studing\Delegate\obj\Debug\Delegate.csprojResolveAssemblyReference.ca
 E:\studing\Studing\Delegate\obj\Debug\Delegate.csproj.CoreCompileInputs.cache
 E:\studing\Studing\Delegate\obj\Debug\Delegate.exe
 E:\studing\Studing\Delegate\obj\Debug\Delegate.pdb
+G:\studing\Studing\Delegate\bin\Debug\Delegate.exe.config
+G:\studing\Studing\Delegate\bin\Debug\Delegate.exe
+G:\studing\Studing\Delegate\bin\Debug\Delegate.pdb
+G:\studing\Studing\Delegate\obj\Debug\Delegate.csprojResolveAssemblyReference.cache
+G:\studing\Studing\Delegate\obj\Debug\Delegate.csproj.CoreCompileInputs.cache
+G:\studing\Studing\Delegate\obj\Debug\Delegate.exe
+G:\studing\Studing\Delegate\obj\Debug\Delegate.pdb
