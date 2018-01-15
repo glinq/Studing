@@ -15,4 +15,7 @@
   <ItemGroup>
     <None Include="Views\Home\Index.cshtml" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WebSocketService\WebSocketServices.csproj" />
+  </ItemGroup>
 </Project>

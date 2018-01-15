@@ -17,13 +17,12 @@ E:\studing\Studing\Asnyc\obj\Debug\Asnyc.csproj.GenerateResource.Cache
 E:\studing\Studing\Asnyc\obj\Debug\Asnyc.csproj.CoreCompileInputs.cache
 E:\studing\Studing\Asnyc\obj\Debug\Asnyc.exe
 E:\studing\Studing\Asnyc\obj\Debug\Asnyc.pdb
-G:\studing\Studing\Asnyc\bin\Debug\Asnyc.exe.config
 G:\studing\Studing\Asnyc\bin\Debug\Asnyc.exe
-G:\studing\Studing\Asnyc\bin\Debug\Asnyc.pdb
-G:\studing\Studing\Asnyc\obj\Debug\Asnyc.csprojResolveAssemblyReference.cache
+G:\studing\Studing\Asnyc\obj\Debug\Asnyc.exe
 G:\studing\Studing\Asnyc\obj\Debug\Asnyc.AsnycForm.resources
 G:\studing\Studing\Asnyc\obj\Debug\Asnyc.Properties.Resources.resources
 G:\studing\Studing\Asnyc\obj\Debug\Asnyc.csproj.GenerateResource.Cache
 G:\studing\Studing\Asnyc\obj\Debug\Asnyc.csproj.CoreCompileInputs.cache
-G:\studing\Studing\Asnyc\obj\Debug\Asnyc.exe
+G:\studing\Studing\Asnyc\bin\Debug\Asnyc.exe.config
+G:\studing\Studing\Asnyc\bin\Debug\Asnyc.pdb
 G:\studing\Studing\Asnyc\obj\Debug\Asnyc.pdb
