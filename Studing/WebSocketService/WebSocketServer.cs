@@ -13,9 +13,9 @@ namespace WebSocketServices
         public static void Init(IApplicationBuilder app)
         {
             kernel = new WebSocketKernel(app);
-            kernel.OnClintConnect += _OnConnect;
-            kernel.OnClintClose += _OnClose;
-            kernel.OnClintReceive += _OnReceive;
+            kernel.OnClientConnect += _OnConnect;
+            kernel.OnClientClose += _OnClose;
+            kernel.OnClientReceive += _OnReceive;
         }
 
         private static void _OnClose(object sender, DataEventArgs<string, WebSocketClient> e)

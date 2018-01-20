@@ -4,8 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using WebSocketServices;
 
 namespace WebSocketTest
@@ -23,6 +26,8 @@ namespace WebSocketTest
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddOptions();
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -37,7 +42,8 @@ namespace WebSocketTest
             {
                 app.UseExceptionHandler("/Error");
             }
-
+            app.UseWebSockets();
+            app.UseSession();
             app.UseStaticFiles();
             WebSocketServer.Init(app);
             app.UseMvc(routes =>

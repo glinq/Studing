@@ -155,20 +155,48 @@ namespace ThreadDemo
 
 
 
-            Parallel.For(1, 3, a => {
-                int begin = 0;//页
-                for (int i = 1; i <= 10; i++)//数据是  50页*100条*batchNo  条
+            //Parallel.For(1, 3, a => {
+            //    int begin = 0;//页
+            //    for (int i = 1; i <= 10; i++)//数据是  50页*100条*batchNo  条
+            //    {
+            //        begin = (a - 1) * 50 + i;//当前是第几页
+            //        Console.WriteLine($"当前第{begin}页，每页100条；");
+            //    }
+
+            //});
+
+
+
+
+            List<long> piclistRes = new List<long>();
+            for (int i = 1; i <= 134; i++)
+            {
+                piclistRes.Add(i);
+            }
+
+            List<Task> tasklist = new List<Task>();
+            int pagesize = 11;
+            int tasks = piclistRes.Count / pagesize;
+            for (int i = 0; i <= tasks; i++)
+            {
+                List<long> li = piclistRes.Skip(i * pagesize).Take(pagesize).ToList();
+                int ii = i;
+                tasklist.Add(Task.Run(() =>
                 {
-                    begin = (a - 1) * 50 + i;//当前是第几页
-                    Console.WriteLine($"当前第{begin}页，每页100条；");
-                }
-
-            });
-
-
+                    if(li.Count>0)
+                    {
+                        count++;
+                        Console.WriteLine($"我是第{ii}页数据,最大是{li.Last()}，最小是{li.First()}；");
+                    }
+                    Thread.Sleep(500);
+                }));
+            }
+            Console.WriteLine($"count={count}");
+            Task.WaitAll(tasklist.ToArray());
+            Console.WriteLine($"count={count}");
             Console.ReadKey();
         }
-
+        private static int count=0;
         private static void TestLock(string method)
         {
 

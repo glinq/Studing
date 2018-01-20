@@ -34,10 +34,11 @@ namespace WebSocketService
                         WebSocket = webSocket,
                         Context = context
                     };
-                    //绑定事件
+                    //订阅事件
                     client.OnReceive += _OnReceive;
                     client.OnConnect += _OnConnect;
                     client.OnClose += _OnClose;
+                    await _server.AddClient(client);
                 }
                 else
                 {
@@ -50,32 +51,29 @@ namespace WebSocketService
         /// <summary>
         /// 收到消息
         /// </summary>
-        public event EventHandler<DataEventArgs<string, WebSocketClient>> OnClintReceive;
-
-        /// <summary>
-        /// 关闭
-        /// </summary>
-        public event EventHandler<DataEventArgs<string, WebSocketClient>> OnClintClose;
-
-        /// <summary>
-        /// 连接
-        /// </summary>
-        public event EventHandler<DataEventArgs<string, WebSocketClient>> OnClintConnect;
-
-        private void _OnClose(object sender, DataEventArgs<string, WebSocketClient> e)
-        {
-            OnClintClose?.Invoke(this, e);
-            WebSocketClientMg.Instance.Remove(e.Arg1);
-        }
-
-        private void _OnConnect(object sender, DataEventArgs<string, WebSocketClient> e)
-        {
-            OnClintConnect?.Invoke(this, e);
-        }
+        public event EventHandler<DataEventArgs<string, WebSocketClient>> OnClientReceive;
 
         private void _OnReceive(object sender, DataEventArgs<string, WebSocketClient> e)
         {
-            OnClintReceive?.Invoke(this, e);
+            OnClientReceive?.Invoke(this, e);
+        }
+        /// <summary>
+        /// 关闭
+        /// </summary>
+        public event EventHandler<DataEventArgs<string, WebSocketClient>> OnClientClose;
+        private void _OnClose(object sender, DataEventArgs<string, WebSocketClient> e)
+        {
+            OnClientClose?.Invoke(this, e);
+            WebSocketClientMg.Instance.Remove(e.Arg1);
+        }
+        /// <summary>
+        /// 连接
+        /// </summary>
+        public event EventHandler<DataEventArgs<string, WebSocketClient>> OnClientConnect;
+
+        private void _OnConnect(object sender, DataEventArgs<string, WebSocketClient> e)
+        {
+            OnClientConnect?.Invoke(this, e);
         }
         /// <summary>
         /// 获取所有客户端

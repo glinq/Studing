@@ -8,8 +8,6 @@ namespace WebSocketServices
 {
     public class WebSocketServerMg
     {
-        private IApplicationBuilder _app;
-
         //构造函数
         public WebSocketServerMg()
         {
