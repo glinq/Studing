@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2003
+VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Delegate", "Delegate\Delegate.csproj", "{CB0FF326-7BF1-4B66-81A1-969A2ABF3AC6}"
 EndProject
@@ -49,9 +49,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyLibraryUnitTes", "MyLibra
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebSocket", "WebSocket", "{CA90F7B4-A97E-412F-BD41-4FD9C9D204B4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebSocketTest", "WebSocketTest\WebSocketTest.csproj", "{D8F9262C-E66E-41AF-9F0E-F3665C29F20A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebSocketTest", "WebSocketTest\WebSocketTest.csproj", "{D8F9262C-E66E-41AF-9F0E-F3665C29F20A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebSocketServices", "WebSocketService\WebSocketServices.csproj", "{B15AAEEA-5F53-44F8-9B5B-7D1F04ADF97E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebSocketServices", "WebSocketService\WebSocketServices.csproj", "{B15AAEEA-5F53-44F8-9B5B-7D1F04ADF97E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebSocketSimple", "WebSocketSimple\WebSocketSimple.csproj", "{F1E21100-376C-4E65-8C66-6A5CC3829405}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -115,6 +117,10 @@ Global
 		{B15AAEEA-5F53-44F8-9B5B-7D1F04ADF97E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B15AAEEA-5F53-44F8-9B5B-7D1F04ADF97E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B15AAEEA-5F53-44F8-9B5B-7D1F04ADF97E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1E21100-376C-4E65-8C66-6A5CC3829405}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1E21100-376C-4E65-8C66-6A5CC3829405}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1E21100-376C-4E65-8C66-6A5CC3829405}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1E21100-376C-4E65-8C66-6A5CC3829405}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -134,6 +140,7 @@ Global
 		{5C73D4BD-E6B0-46D4-B2E0-F6BFD65F81A8} = {9470B0A1-120E-4A4D-906F-89DA1267D442}
 		{D8F9262C-E66E-41AF-9F0E-F3665C29F20A} = {CA90F7B4-A97E-412F-BD41-4FD9C9D204B4}
 		{B15AAEEA-5F53-44F8-9B5B-7D1F04ADF97E} = {CA90F7B4-A97E-412F-BD41-4FD9C9D204B4}
+		{F1E21100-376C-4E65-8C66-6A5CC3829405} = {CA90F7B4-A97E-412F-BD41-4FD9C9D204B4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {281CB6B4-27D3-4257-A1F4-402BC957CAC1}

@@ -17,5 +17,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WebSocketService\WebSocketServices.csproj" />
+    <ProjectReference Include="..\WebSocketSimple\WebSocketSimple.csproj" />
   </ItemGroup>
 </Project>

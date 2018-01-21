@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using WebSocketServices;
+using WebSocketSimpleService;
 
 namespace WebSocketTest
 {
@@ -45,7 +46,8 @@ namespace WebSocketTest
             app.UseWebSockets();
             app.UseSession();
             app.UseStaticFiles();
-            WebSocketServer.Init(app);
+            new MyWebSocketService(app);
+            //WebSocketServer.Init(app);
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

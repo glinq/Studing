@@ -23,3 +23,10 @@ G:\studing\Studing\Events\bin\Debug\Events.pdb
 G:\studing\Studing\Events\obj\Debug\Events.csproj.CoreCompileInputs.cache
 G:\studing\Studing\Events\obj\Debug\Events.exe
 G:\studing\Studing\Events\obj\Debug\Events.pdb
+E:\Studing\Studing\Studing\Events\bin\Debug\Events.exe.config
+E:\Studing\Studing\Studing\Events\bin\Debug\Events.exe
+E:\Studing\Studing\Studing\Events\bin\Debug\Events.pdb
+E:\Studing\Studing\Studing\Events\obj\Debug\Events.csprojResolveAssemblyReference.cache
+E:\Studing\Studing\Studing\Events\obj\Debug\Events.csproj.CoreCompileInputs.cache
+E:\Studing\Studing\Studing\Events\obj\Debug\Events.exe
+E:\Studing\Studing\Studing\Events\obj\Debug\Events.pdb

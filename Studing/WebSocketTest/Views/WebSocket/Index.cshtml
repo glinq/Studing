@@ -1,0 +1,80 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <title></title>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script>
+        var ws;
+        $().ready(function () {
+            $('#conn').click(function () {
+                if ($("#user").val() == "") {
+                    $('#msg').append('<p>请选择一个昵称</p>');
+                    return;
+                }
+                ws = new WebSocket('ws://' + window.location.hostname + ':' + window.location.port + '?user=' + $("#user").val());
+                $('#msg').append('<p>正在连接</p>');
+
+                ws.onopen = function () {
+                    $('#msg').append('<p>已经连接</p>');
+                }
+                ws.onmessage = function (evt) {
+                    $('#msg').append('<p>' + evt.data + '</p>');
+                }
+                ws.onerror = function (evt) {
+                    $('#msg').append('<p>' + JSON.stringify(evt) + '</p>');
+                }
+                ws.onclose = function () {
+                    $('#msg').append('<p>已经关闭</p>');
+                }
+            });
+
+            $('#close').click(function () {
+                ws.close();
+            });
+
+            $('#send').click(function () {
+                if ($("#to").val() == "") {
+                    $('#msg').append('<p>请选择一个接收者</p>');
+                    return;
+
+                }
+                if (ws.readyState == WebSocket.OPEN) {
+                    ws.send($("#to").val() + "|" + $('#content').val());
+                }
+                else {
+                    $('#tips').text('连接已经关闭');
+                }
+            });
+
+        });
+    </script>
+</head>
+<body>
+    <div>
+        <span>发送者：</span>
+        <select id="user">
+            <option value="13551">13551 </option>
+            <option value="13552">13552 </option>
+        </select>
+        <input id="conn" type="button" value="连接" />
+        <input id="close" type="button" value="关闭" /><br />
+        <span id="tips"></span>
+        <input id="content" type="text" />
+        <input id="send" type="button" value="发送" /><br />
+        <span>接收者：</span>
+        <select id="to">
+            <option value="13551">13551 </option>
+            <option value="13552">13552 </option>
+        </select>
+        <div id="msg"></div>
+    </div>
+</body>
+</html>
+
