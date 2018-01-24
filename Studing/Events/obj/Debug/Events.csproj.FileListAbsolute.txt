@@ -30,3 +30,4 @@ E:\Studing\Studing\Studing\Events\obj\Debug\Events.csprojResolveAssemblyReferenc
 E:\Studing\Studing\Studing\Events\obj\Debug\Events.csproj.CoreCompileInputs.cache
 E:\Studing\Studing\Studing\Events\obj\Debug\Events.exe
 E:\Studing\Studing\Studing\Events\obj\Debug\Events.pdb
+G:\studing\Studing\Events\obj\Debug\Events.csprojResolveAssemblyReference.cache
