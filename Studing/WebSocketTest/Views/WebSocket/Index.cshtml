@@ -25,7 +25,7 @@
                     $('#msg').append('<p>已经连接</p>');
                 }
                 ws.onmessage = function (evt) {
-                    $('#msg').append('<p>' + evt.data + '</p>');
+                    $('#msg').append('<pre>' + evt.data + '</pre>');
                 }
                 ws.onerror = function (evt) {
                     $('#msg').append('<p>' + JSON.stringify(evt) + '</p>');

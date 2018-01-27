@@ -56,7 +56,7 @@ namespace WebSocketSimpleService
                             if (strarr.Length == 2)
                             {
                                 receiverKey = strarr[0];
-                                buffer = new ArraySegment<byte>(Encoding.UTF8.GetBytes(strarr[1]));
+                                buffer = new ArraySegment<byte>(Encoding.UTF8.GetBytes($"{receiverKey}   {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}<br/>{strarr[1]}"));
                             }
                             if (WebSocket.CloseStatus.HasValue)
                             {
