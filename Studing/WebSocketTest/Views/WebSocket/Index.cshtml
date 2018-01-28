@@ -9,6 +9,41 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
     <title></title>
+    <style>
+        .div_msg {
+            width: 98%;
+        }
+
+        .receive_content {
+            text-align: left;
+            margin-left: 10px;
+        }
+
+        .send_content {
+            text-align: right;
+            margin-right: 10px;
+        }
+
+        #content {
+            width: 70%;
+            margin-top: 25px;
+        }
+
+        .div_chatting {
+            margin-top: 25px;
+            border: 1px solid black;
+            height: 400px;
+            overflow-y: scroll;
+        }
+
+        .div_input {
+            width: 80%;
+        }
+        input {
+            width: 80px;
+            height: 40px;
+        }
+    </style>
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <script>
         var ws;
@@ -18,20 +53,30 @@
                     $('#msg').append('<p>请选择一个昵称</p>');
                     return;
                 }
-                ws = new WebSocket('ws://' + window.location.hostname + ':' + window.location.port + '?user=' + $("#user").val());
-                $('#msg').append('<p>正在连接</p>');
+                if ($("#to").val() == "") {
+                    $('#msg').append('<p>请选择一个接收者</p>');
+                    return;
+                }
+                ws = new WebSocket('ws://' + window.location.hostname + ':' + window.location.port + '?from=' + $("#user").val() + '&to=' + $("#to").val());
+                $('#tips').text('正在连接...');
 
                 ws.onopen = function () {
-                    $('#msg').append('<p>已经连接</p>');
+                    $('#tips').text('连接成功！');
+                    $('#close').show();
+                    $('#conn').hide();
                 }
                 ws.onmessage = function (evt) {
-                    $('#msg').append('<pre>' + evt.data + '</pre>');
+                    $('#msg').append('<p class="receive_content">' + evt.data + '</p>');
+                    $('.div_chatting').scrollTop($('.div_chatting')[0].scrollHeight);
                 }
                 ws.onerror = function (evt) {
-                    $('#msg').append('<p>' + JSON.stringify(evt) + '</p>');
+                    //$('#msg').append('<p>' + JSON.stringify(evt) + '</p>');
                 }
                 ws.onclose = function () {
-                    $('#msg').append('<p>已经关闭</p>');
+                    $('#tips').text('已经关闭!');
+                    ws = undefined;
+                    $('#close').hide();
+                    $('#conn').show();
                 }
             });
 
@@ -40,13 +85,24 @@
             });
 
             $('#send').click(function () {
+                $("#sendtips").text("");
                 if ($("#to").val() == "") {
                     $('#msg').append('<p>请选择一个接收者</p>');
                     return;
-
+                }
+                if (!ws || !ws.readyState) {
+                    $('#tips').text('请先发起websocket连接！'); return;
                 }
                 if (ws.readyState == WebSocket.OPEN) {
-                    ws.send($("#to").val() + "|" + $('#content').val());
+                    if (!$('#content').val() || $('#content').val().trim() == "") {
+                        $("#sendtips").text("内容为空！");
+                        return;
+                    }
+                    ws.send($("#user").val() + "ф" + $("#to").val() + "ф" + $('#content').val());
+                    var nowdate = new Date();
+                    $('#msg').append('<p class="send_content">我 ' + nowdate.getHours() + ':' + nowdate.getMinutes() + ':' + nowdate.getSeconds() + '<br/>' + $('#content').val() + '</p>');
+                    $('.div_chatting').scrollTop($('.div_chatting')[0].scrollHeight);
+                    $('#content').val("");
                 }
                 else {
                     $('#tips').text('连接已经关闭');
@@ -60,20 +116,26 @@
     <div>
         <span>发送者：</span>
         <select id="user">
-            <option value="13551">13551 </option>
-            <option value="13552">13552 </option>
+            <option value="顾林仟13551">顾林仟13551 </option>
+            <option value="顾林仟13552">顾林仟13552 </option>
+            <option value="顾林仟13553">顾林仟13553 </option>
         </select>
-        <input id="conn" type="button" value="连接" />
-        <input id="close" type="button" value="关闭" /><br />
-        <span id="tips"></span>
-        <input id="content" type="text" />
-        <input id="send" type="button" value="发送" /><br />
         <span>接收者：</span>
         <select id="to">
-            <option value="13551">13551 </option>
-            <option value="13552">13552 </option>
+            <option value="顾林仟13551">顾林仟13551 </option>
+            <option value="顾林仟13552">顾林仟13552 </option>
+            <option value="顾林仟13553">顾林仟13553 </option>
         </select>
-        <div id="msg"></div>
+        <input id="conn" type="button" value="连接" />
+        <input id="close" type="button" value="关闭" style="display:none;" /><span id="tips" style="color:red"></span><br />
+
+    </div>
+    <div class="div_chatting">
+        <div id="msg" class="div_msg"></div>
+    </div>
+    <div class="div_input">
+        <textarea id="content"></textarea>
+        <input id="send" type="button" value="发送" /><span id="sendtips" style="color:red"></span>
     </div>
 </body>
 </html>

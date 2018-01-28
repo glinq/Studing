@@ -11,10 +11,14 @@ namespace WebSocketSimpleService
     public class MyWebSocketService
     {
         private IApplicationBuilder _app;
-
-        private Dictionary<string, WebSocket> ConnectPool = new Dictionary<string, WebSocket>();
-
-        private Dictionary<string, List<MessageInfo>> MessagePool = new Dictionary<string, List<MessageInfo>>();
+        /// <summary>
+        /// 连接池 from ,(to,websocket) 
+        /// </summary>
+        public static Dictionary<string, Tuple<string, WebSocket>> ConnectPool = new Dictionary<string, Tuple<string, WebSocket>>();
+        /// <summary>
+        /// 离线消息池 to ,(from,websocket) 
+        /// </summary>
+        public static Dictionary<string, List<MessageInfo>> MessagePool = new Dictionary<string, List<MessageInfo>>();
 
         public MyWebSocketService(IApplicationBuilder app)
         {
@@ -24,20 +28,21 @@ namespace WebSocketSimpleService
                 if (context.WebSockets.IsWebSocketRequest)
                 {
                     WebSocket WebSocket = await context.WebSockets.AcceptWebSocketAsync();
-                    string keys = context.Request.Query["user"].ToString().Trim();
-                    if (!ConnectPool.ContainsKey(keys))
+                    string from = context.Request.Query["from"].ToString().Trim();
+                    string to = context.Request.Query["to"].ToString().Trim();
+                    if (!ConnectPool.ContainsKey(from))
                     {
-                        ConnectPool.Add(keys, WebSocket);
+                        ConnectPool.Add(from, new Tuple<string, WebSocket>(to, WebSocket));
                     }
-                    if (ConnectPool[keys] != WebSocket)
+                    if (ConnectPool[from].Item1 != to || ConnectPool[from].Item2 != WebSocket)
                     {
-                        ConnectPool[keys] = WebSocket;
+                        ConnectPool[from] = new Tuple<string, WebSocket>(to, WebSocket);
                     }
-                    if (MessagePool.ContainsKey(keys))
+                    if (MessagePool.ContainsKey(from))
                     {
-                        List<MessageInfo> messagelist = MessagePool[keys];
+                        List<MessageInfo> messagelist = MessagePool[from];
                         messagelist.ForEach(async f => { await WebSocket.SendAsync(f.MsgContent, WebSocketMessageType.Text, true, CancellationToken.None); });
-                        MessagePool.Remove(keys);
+                        MessagePool.Remove(from);
                     }
                     while (true)
                     {
@@ -51,25 +56,27 @@ namespace WebSocketSimpleService
                             ArraySegment<byte> buffer = new ArraySegment<byte>(new byte[1024]);
                             WebSocketReceiveResult receiveinfo = await WebSocket.ReceiveAsync(buffer, CancellationToken.None);
                             string message = Encoding.UTF8.GetString(buffer.Array, 0, receiveinfo.Count);
-                            string[] strarr = message.Split('|');
-                            string receiverKey = string.Empty;
-                            if (strarr.Length == 2)
+                            string[] strarr = message.Split('ф');
+                            string touser = string.Empty;
+                            string fromuser = string.Empty;
+                            if (strarr.Length == 3)
                             {
-                                receiverKey = strarr[0];
-                                buffer = new ArraySegment<byte>(Encoding.UTF8.GetBytes($"{receiverKey}   {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}<br/>{strarr[1]}"));
+                                fromuser = strarr[0];
+                                touser = strarr[1];
+                                buffer = new ArraySegment<byte>(Encoding.UTF8.GetBytes($"{fromuser} {DateTime.Now.ToString("HH:mm:ss")}<br/>{strarr[2]}"));
                             }
                             if (WebSocket.CloseStatus.HasValue)
                             {
-                                if (ConnectPool.ContainsKey(keys))
+                                if (ConnectPool.ContainsKey(from))
                                 {
-                                    ConnectPool.Remove(keys);
+                                    ConnectPool.Remove(from);
                                     WebSocket.Dispose();
                                 }
                                 break;
                             }
-                            if (ConnectPool.ContainsKey(receiverKey))
+                            if (ConnectPool.ContainsKey(touser))
                             {
-                                WebSocket receiversocket = ConnectPool[receiverKey];
+                                WebSocket receiversocket = ConnectPool[touser].Item2;
                                 if (receiversocket != null && receiversocket.State == WebSocketState.Open)
                                 {
                                     await receiversocket.SendAsync(buffer, WebSocketMessageType.Text, true, CancellationToken.None);
@@ -77,11 +84,11 @@ namespace WebSocketSimpleService
                             }
                             else
                             {
-                                if (!MessagePool.ContainsKey(receiverKey))
+                                if (!MessagePool.ContainsKey(touser))
                                 {
-                                    MessagePool.Add(receiverKey, new List<MessageInfo>());
+                                    MessagePool.Add(touser, new List<MessageInfo>());
                                 }
-                                MessagePool[receiverKey].Add(new MessageInfo(DateTime.Now, buffer));
+                                MessagePool[touser].Add(new MessageInfo(DateTime.Now, buffer, fromuser = from));
                             }
                         }
                         catch (Exception ex)
@@ -101,13 +108,16 @@ namespace WebSocketSimpleService
 
     public class MessageInfo
     {
-        public MessageInfo(DateTime _MsgTime, ArraySegment<byte> _MsgContent)
+        public MessageInfo(DateTime _MsgTime, ArraySegment<byte> _MsgContent, string fromuser)
         {
             MsgTime = _MsgTime;
             MsgContent = _MsgContent;
+            FromUser = fromuser;
         }
         public DateTime MsgTime { get; set; }
         public ArraySegment<byte> MsgContent { get; set; }
+
+        public string FromUser { get; set; }
     }
 }
 
