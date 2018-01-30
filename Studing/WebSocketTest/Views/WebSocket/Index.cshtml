@@ -25,36 +25,49 @@
         }
 
         #content {
-            width: 70%;
+            width: 55%;
             margin-top: 25px;
+            resize: none;
+            height: 35px;
+            float: left;
         }
 
         .div_chatting {
             margin-top: 25px;
             border: 1px solid black;
-            height: 400px;
+            height: 300px;
             overflow-y: scroll;
         }
 
         .div_input {
             width: 80%;
         }
+
         input {
             width: 80px;
             height: 40px;
+            margin-top: 25px;
         }
     </style>
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <script>
         var ws;
         $().ready(function () {
+            //绑定下拉
+            var data = JSON.parse("[{\"EmpCode\":\"11807\",\"EmpName\":\"陈志寅\"},{\"EmpCode\":\"02754\",\"EmpName\":\"孙黎\"},{\"EmpCode\":\"00281\",\"EmpName\":\"阮文超\"},{\"EmpCode\":\"10552\",\"EmpName\":\"邱吉良\"},{\"EmpCode\":\"06129\",\"EmpName\":\"戴加兵\"},{\"EmpCode\":\"06657\",\"EmpName\":\"周军\"},{\"EmpCode\":\"10497\",\"EmpName\":\"刘鹏\"},{\"EmpCode\":\"13534\",\"EmpName\":\"叶盛\"},{\"EmpCode\":\"13551\",\"EmpName\":\"顾林仟\"},{\"EmpCode\":\"16901\",\"EmpName\":\"祝进云\"},{\"EmpCode\":\"19318\",\"EmpName\":\"王申\"},{\"EmpCode\":\"21751\",\"EmpName\":\"刘晓敏\"},{\"EmpCode\":\"29739\",\"EmpName\":\"王亮\"},{\"EmpCode\":\"09564\",\"EmpName\":\"丁勇\"},{\"EmpCode\":\"10238\",\"EmpName\":\"李绍可\"},{\"EmpCode\":\"10681\",\"EmpName\":\"杨世宇\"},{\"EmpCode\":\"10824\",\"EmpName\":\"邢甜\"},{\"EmpCode\":\"16005\",\"EmpName\":\"孔令德\"},{\"EmpCode\":\"13983\",\"EmpName\":\"张锐\"},{\"EmpCode\":\"32135\",\"EmpName\":\"施蕾\"},{\"EmpCode\":\"10810\",\"EmpName\":\"卜庆庆\"},{\"EmpCode\":\"10863\",\"EmpName\":\"李铖凯\"},{\"EmpCode\":\"17436\",\"EmpName\":\"时伟\"},{\"EmpCode\":\"03311\",\"EmpName\":\"李小伟\"},{\"EmpCode\":\"06216\",\"EmpName\":\"周黎\"},{\"EmpCode\":\"09905\",\"EmpName\":\"王延\"},{\"EmpCode\":\"06111\",\"EmpName\":\"胡彬\"},{\"EmpCode\":\"16304\",\"EmpName\":\"吴旭芬\"},{\"EmpCode\":\"22829\",\"EmpName\":\"曹竟\"},{\"EmpCode\":\"26298\",\"EmpName\":\"李旦\"},{\"EmpCode\":\"06765\",\"EmpName\":\"李红明\"},{\"EmpCode\":\"15118\",\"EmpName\":\"乔雪健\"},{\"EmpCode\":\"25488\",\"EmpName\":\"阳林\"},{\"EmpCode\":\"35584\",\"EmpName\":\"殷晓东\"}]");
+            var optionsinfo = "";
+            for (var i = 0; i < data.length; i++) {
+                optionsinfo += '<option value="' + data[i].EmpName + data[i].EmpCode + '">' + data[i].EmpName + data[i].EmpCode + ' </option>'
+            }
+            $("#user")[0].innerHTML += optionsinfo;
+            $("#to")[0].innerHTML += optionsinfo;
             $('#conn').click(function () {
                 if ($("#user").val() == "") {
-                    $('#msg').append('<p>请选择一个昵称</p>');
+                    $('#tips').text('请选择一个发送者');
                     return;
                 }
                 if ($("#to").val() == "") {
-                    $('#msg').append('<p>请选择一个接收者</p>');
+                    $('#tips').text('请选择一个接收者');
                     return;
                 }
                 ws = new WebSocket('ws://' + window.location.hostname + ':' + window.location.port + '?from=' + $("#user").val() + '&to=' + $("#to").val());
@@ -86,8 +99,9 @@
 
             $('#send').click(function () {
                 $("#sendtips").text("");
+                $("#tips").text("");
                 if ($("#to").val() == "") {
-                    $('#msg').append('<p>请选择一个接收者</p>');
+                    $('#tips').text('请选择一个接收者');
                     return;
                 }
                 if (!ws || !ws.readyState) {
@@ -116,16 +130,10 @@
     <div>
         <span>发送者：</span>
         <select id="user">
-            <option value="顾林仟13551">顾林仟13551 </option>
-            <option value="顾林仟13552">顾林仟13552 </option>
-            <option value="顾林仟13553">顾林仟13553 </option>
+            <option value="">-请选择-</option>
         </select>
         <span>接收者：</span>
-        <select id="to">
-            <option value="顾林仟13551">顾林仟13551 </option>
-            <option value="顾林仟13552">顾林仟13552 </option>
-            <option value="顾林仟13553">顾林仟13553 </option>
-        </select>
+        <select id="to"><option value="">-请选择-</option></select>
         <input id="conn" type="button" value="连接" />
         <input id="close" type="button" value="关闭" style="display:none;" /><span id="tips" style="color:red"></span><br />
 
@@ -134,8 +142,9 @@
         <div id="msg" class="div_msg"></div>
     </div>
     <div class="div_input">
-        <textarea id="content"></textarea>
-        <input id="send" type="button" value="发送" /><span id="sendtips" style="color:red"></span>
+        <textarea id="content" placeholder="请输入内容"></textarea>
+        <input id="send" type="button" value="发送" style="float:left; margin-top:25px;margin-left:10px;" /><br />
+        <span id="sendtips" style="color:red"></span>
     </div>
 </body>
 </html>
