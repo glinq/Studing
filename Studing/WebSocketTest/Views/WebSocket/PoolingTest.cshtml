@@ -1,0 +1,44 @@
+﻿<html>
+<head>
+    <title>PoolingTest</title>
+</head>
+<body>
+    <div id="logs">
+
+    </div>
+    <iframe id="iframe_test" name="iframe_test" style="display:none" src=""></iframe>
+</body>
+</html>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script>
+    $(function () {
+        //var i = 0;
+        //var itervals=window.setInterval(function () {
+        //    //$("#iframe_test").attr("src", "/websocket/GetRander");
+        //    //window.setTimeout(function () {
+
+        //    //    $("#logs").append("[data: " + $($("#iframe_test").get(0).contentDocument).find("body").text() + " ]<br/>");
+        //    //},4000);
+
+        //    //window.frames["iframe_test"].location.reload();
+        //    if (i > 10) {
+        //        window.clearInterval(itervals);
+        //    }
+        //    i++;
+        //    $.get("/websocket/GetRander", function (data) {
+
+        //        $("#logs").append("[data: " + data + " ]<br/>");
+        //    });
+        //}, 3000);
+
+
+        function poolings() { 
+            $.get("/websocket/GetRander", function (data) {
+                $("#logs").append("[data: " + data + " ]<br/>");
+                poolings();
+            });
+        }
+        poolings();
+    });
+</script>
+
