@@ -1,0 +1,103 @@
+<div id="app">
+    <span v-bind:title="message">
+        {{ message }}
+    </span>
+
+</div>
+<div id='app_if'>
+    <p v-if="seen">哈哈 我现身了！</p>
+</div>
+<div id='app_for'>
+    <ol>
+        <li v-for='todo in todos'>
+            {{todo.id}}{{todo.text}}
+        </li>
+    </ol>
+</div>
+<div id='app_userinput'>
+    <p>{{message}}</p>
+    <button v-on:click="reverseMessage">逆转逆转</button>
+</div>
+<div id='app_model'>
+    <p>{{message}}</p>
+    <input v-model="message" />
+</div>
+<div id='app_mycomponent' v-bind:style="{fontSize:postFontSize+'em'} ">
+        <mytips v-for="item in itemlist" 
+        v-bind:myprops1="item" 
+        v-bind:myprops2="item" 
+        v-bind:key="item.id" 
+        v-on:enlarge-text="postFontSize += 0.1">
+    </mytips>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    var appdata = {
+        message: '追光者 VUE! ' + new Date().toLocaleString(),
+        seen: true
+    };
+    //Object.freeze(appdata);
+    var app = new Vue({
+        el: '#app',
+        data: appdata
+    })
+    app.$watch('message', function (newvalue, oldvalue) {
+        console.log(newvalue);
+        console.log(oldvalue);
+    })
+
+
+    var app_if = new Vue({
+        el: '#app_if',
+        data: {
+            seen: true
+        }
+    })
+    var app_for = new Vue({
+        el: "#app_for",
+        data: {
+            todos: [
+                { "id": "A", "text": "000" },
+                { "id": "B", "text": "111" },
+                { "id": "C", "text": "222" },
+                { "id": "D", "text": "333" }
+            ]
+        }
+    })
+    var app_userinput = new Vue({
+        el: "#app_userinput",
+        data: {
+            message: "顾-林-仟",
+        },
+        methods: {
+            reverseMessage: function () {
+                this.message = this.message.split('-').reverse().join('-')
+            }
+        }
+
+    })
+    var app_model = new Vue({
+        el: "#app_model",
+        data: {
+            message: "gulinqian"
+        }
+    })
+
+    /*组件化应用*/
+    Vue.component('mytips', {
+        template: "<ol><button v-on:click=\"$emit('enlarge-text')\">Enlarge text</button><li >{{myprops1.text+myprops2.id}}</li></ol>",
+        props: ['myprops1', 'myprops2']
+    })
+    var app_mycomponent = new Vue({
+        el: "#app_mycomponent",
+        data: {
+            postFontSize: 1,
+            itemlist: [
+                { "id": "A", "text": "000" },
+                { "id": "B", "text": "111" },
+                { "id": "C", "text": "222" },
+                { "id": "D", "text": "333" }
+            ]
+        }
+    })
+</script>
