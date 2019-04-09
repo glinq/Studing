@@ -36,5 +36,24 @@ namespace CommonLq
             Image image = Image.FromStream(originStream);
             return needformat.Equals(image.RawFormat);
         }
+        /// <summary>
+        /// 获取图片格式对象
+        /// </summary>
+        /// <param name="format"></param>
+        /// <returns></returns>
+        public static ImageCodecInfo GetImageEncoder(this Stream originStream)
+        {
+            ImageCodecInfo[] codecs = ImageCodecInfo.GetImageEncoders();
+            Image image = Image.FromStream(originStream);
+            var format = image.RawFormat;
+            foreach (ImageCodecInfo codec in codecs)
+            {
+                if (codec.FormatID == format.Guid)
+                {
+                    return codec;
+                }
+            }
+            return null;
+        }
     }
 }
